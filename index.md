@@ -11,6 +11,8 @@ Articles that I come across or something that I have been thinking about.
 
 - [[Clippings/Something Big Is Happening]]
 - [[Clippings/This is Water by David Foster Wallace (Full Transcript and Audio)]]
+- [[A Stoic’s Key to Peace of Mind Seneca on the Antidote to Anxiety]]
+- [[How To Read More]]
 
 ## *writings*
-- [[A Stoic’s Key to Peace of Mind Seneca on the Antidote to Anxiety]]
+[[From variation to regression]]
