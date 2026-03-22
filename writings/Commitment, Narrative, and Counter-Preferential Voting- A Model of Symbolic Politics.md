@@ -1,4 +1,3 @@
-# Commitment, Narrative, and Counter-Preferential Voting: A Model of Symbolic Politics
 
 **Working Paper - Draft**
 
@@ -6,362 +5,185 @@
 
 ---
 
-## 1. Introduction and Motivation
+## 1. Introduction
 
-### 1.1 The Puzzle
+### 1.1 Motivation
 
-Why do voters systematically support candidates whose policies make them materially worse off? This question has puzzled observers across democracies: Brexit voters accepting economic decline for "sovereignty," American rust-belt workers supporting trade wars that cost them jobs, or Indian farmers voting for parties whose agricultural policies harm them. Standard political economy models struggle with this phenomenon, typically resorting to information asymmetries, irrationality, or preference misspecification.
+Why do voters support candidates whose policies make them materially worse off? Brexit voters accepting economic decline, rust-belt workers supporting trade wars, farmers voting for parties whose agricultural policies harm them—standard political economy struggles with this phenomenon.
 
-We propose a different explanation rooted in Amartya Sen's (1977) distinction between sympathy and commitment in "Rational Fools." Sen argued that standard utility maximization cannot capture genuine moral commitment—the willingness to act against one's material interests out of duty or principle. We extend this insight to political choice: voters have preferences not only over material outcomes but over *states of the world* characterized by the fulfillment of certain commitments or visions.
+We propose an explanation rooted in Amartya Sen's (1977) distinction between sympathy and commitment. Sen argued that standard utility maximization cannot capture genuine commitment—the willingness to act against material interests out of principle. We extend this to political choice: voters have preferences over both material outcomes and *world-states* (narratives about society), with no assumption these align.
 
-### 1.2 The Sen Framework
+### 1.2 Why Sen? Why Not Just "A Utility Function"?
 
-Sen distinguished between two types of other-regarding behavior:
+One might object that specifying Ui=α⋅V+(1−α)⋅uU_i simply amounts to positing a particular utility function, raising the question of what is gained by invoking Sen’s framework.
 
-**Sympathy**: Agent helps others because their welfare enters their utility function. This remains within the standard utility-maximization framework—the agent is still self-interested, just with broader preferences.
+**The distinction is substantive, not semantic.** Standard political economy models preferences over **consequences for the agent**: how policies affect my consumption, my income, my welfare. Even "altruistic" preferences reduce to utility I derive from others' outcomes. Sen's insight was that commitment involves preferences over **states of the world** independent of personal consequences—you oppose apartheid not because opposing it makes you feel good, but because apartheid is wrong.
 
-**Commitment**: Agent acts against their material interest out of principle or duty. This cannot be reduced to utility maximization over outcomes—the agent values the *fact of commitment* itself, independent of consequences.
+We formalize this by modeling V(s) as a **public good**: "Hindu Rashtra exists" or "Britain has sovereignty" are world-states, non-rival and non-excludable. Heterogeneity enters through α_i(s)—how much each voter weights the public symbolic good versus private material utility. **Proposition 0 proves this is non-reducible**: no utility function over personal outcomes alone can replicate choices when voters care about public world-states.
 
-Standard rational choice theory can only accommodate sympathy. It treats all behavior as utility-maximizing, which Sen argued makes us "rational fools"—incapable of genuine moral agency.
+The analytical contribution is the **α-dynamics**: propaganda shifts weighting through g(e₁, e₂, ᾱ) with S-curve properties creating tipping points, network effects generating cascades, and decay requiring maintenance to sustain counter-preferential voting. The Sen framing disciplines the model—V must be public, α heterogeneous, preferences over world-states not outcomes—and Proposition 0 validates this is genuinely distinct from standard approaches.
 
-### 1.3 Our Extension to Politics
+### 1.3 Contributions
 
-We formalize Sen's insight for political choice by introducing a two-level preference structure:
+**Theoretical**: Formalize Sen's commitment concept as preferences over public world-states, prove non-reducibility to outcome-based utility (Proposition 0), solve Akerlof-Kranton's bundle problem with s-only choice.
 
-1. **Object-level preferences** over material outcomes: u(P) where P represents policy consequences
-2. **Meta-level preferences** over world-states: V(s) where s represents narratives about the kind of society or civilization voters want
+**Analytical**: Endogenous α via propaganda with S-curve dynamics → tipping points and multiple equilibria; network effects → polarization cascades; decay → maintenance requirement explaining perpetual campaigning; viability constraint → which narratives can win.
 
-Crucially, we make **no assumption** that V(s) and E[u|P] are aligned. A voter can prefer state s₁ over s₀ at the meta-level while recognizing that the policies required to achieve s₁ will make them worse off materially.
-
-This framework allows us to model voters who are:
-- **Rational** in the sense of maximizing a well-defined objective
-- **Sophisticated** in recognizing policy consequences
-- Yet **counter-preferential** in choosing policies that harm them materially
-
-The key mechanism: when the symbolic/narrative value of a political vision is large enough, voters willingly accept material losses to realize that vision.
+**Empirical**: Explain counter-preferential voting without irrationality; predict who votes against interests (high α_{i,0}), when it cascades (S-curve threshold), why it persists (maintenance prevents accountability).
 
 ---
 
-## 2. The Model
+## 2. Model
 
-### 2.1 Environment
+### 2.1 Setup
 
-**Population**: Continuum of voters indexed by i ∈ [0,1]
+**Population**: Continuum of voters i ∈ [0,1]
 
-**Candidates**: Two candidates j ∈ {1, 2}, each offering a bundle (sⱼ, Pⱼ) where:
-- sⱼ ∈ S: A narrative or vision about the desired state of the world
-- Pⱼ ∈ P: A policy bundle that will be implemented if elected
+**Candidates**: j ∈ {1, 2}, each proposing world-state s_j ∈ S
 
-**Examples of narratives s:**
-- "Make America Great Again" (nationalist restoration)
-- "Hindu Rashtra" (Hindu civilizational state)
-- "Take Back Control" (sovereignty restoration)
+**World-states**: s represents a narrative/vision (e.g., "Hindu Rashtra," "MAGA," "Brexit")
 
-**Timeline**:
-1. Candidates commit to policies Pⱼ and choose narratives sⱼ
-2. Candidates invest in propaganda effort eⱼ ≥ 0
-3. Voters observe (sⱼ, Pⱼ, eⱼ) and vote
-4. Winning candidate implements their policy
-5. Voters experience material outcomes and narrative fulfillment/decay
+**Timeline**: (1) Candidates commit to (s_j, e_j); (2) Voters observe and vote; (3) Winning s* implemented; (4) Outcomes realized
 
-### 2.2 Voter Preferences
+### 2.2 Preferences
 
-Each voter i has a two-component utility function:
+Voter i evaluates world-state s via:
 
-**Voting stage utility:**
+U_i(s) = α_i(s; e₁, e₂) · V(s) + [1 - α_i(s; e₁, e₂)] · E[u_i|s]
 
-U<sub>i</sub>(j) = α<sub>i</sub>(s<sub>j</sub>) · V(s<sub>j</sub>) + [1 - α<sub>i</sub>(s<sub>j</sub>)] · E[u<sub>i</sub>|P<sub>j</sub>]
+**V(s)**: Public symbolic value—same world-state for all (Hindu Rashtra exists or doesn't), non-rival, non-excludable. Captures Sen-style commitment value.
 
-Where:
-- V(s<sub>j</sub>): Value of the world-state/narrative promised by candidate j
-  - This captures the Sen-style commitment value
-  - Independent of material consequences
-- E[u<sub>i</sub>|P<sub>j</sub>]: Expected material utility from candidate j's policies
-  - Standard consumption/income utility
-- α<sub>i</sub>(s<sub>j</sub>) ∈ [0,1]: Narrative-specific weighting parameter
-  - How much voter i weights symbolic vs material considerations for narrative s
+**E[u_i|s]**: Individual material utility—heterogeneous across voters, standard consumption utility.
 
-**Key feature**: α<sub>i</sub>(s<sub>j</sub>) is **narrative-specific**. The same voter may have:
-- High α<sub>i</sub>(s<sub>Hindu</sub>) if they're predisposed to Hindu nationalist narrative
-- Low α<sub>i</sub>(s<sub>climate</sub>) if they're unmoved by climate activism narrative
+**α_i(s; e₁, e₂) ∈ [0,1]**: Individual weighting—how much voter i weights public symbolic good versus private material utility. Heterogeneous (Hindu voter high α_i(s_Hindu), Muslim voter low) and endogenous (depends on propaganda e₁, e₂).
 
-This captures that voters aren't simply "symbolic" or "material" types—they respond differently to different narratives based on identity, history, and predispositions.
+**Key**: Heterogeneity through α_i(s), not V(s). The symbolic good is public; voters differ in weighting it.
 
-### 2.3 The Alpha Function: Predisposition and Propaganda
+### 2.3 Weighting Function
 
-The weighting parameter has two components:
+α_i(s; e₁, e₂) = α_{i,0}(s) + g(e₁, e₂, ᾱ(s))
 
-α<sub>i</sub>(s<sub>j</sub>) = α<sub>i,0</sub>(s<sub>j</sub>) + g(e<sub>j</sub>, ᾱ(s<sub>j</sub>))
+**α_{i,0}(s)**: Baseline predisposition—exogenous, identity-based, narrative-specific (Hindu voter: α_{i,0}(s_Hindu) = 0.5, α_{i,0}(s_secular) = 0.2). Cannot be created from nothing.
 
-**Baseline predisposition** α<sub>i,0</sub>(s<sub>j</sub>):
-- Exogenous sociological/historical predisposition to narrative s
-- Examples:
-  - Hindu voters have high α<sub>i,0</sub>(s<sub>Hindu</sub>) due to historical identity
-  - White working-class Americans have latent α<sub>i,0</sub>(s<sub>MAGA</sub>) from cultural displacement anxiety
-  - These cannot be created from nothing—they require sociological substrate
+**g(e₁, e₂, ᾱ(s))**: Propaganda effect where e_j = effort, ᾱ(s) = activated population share.
 
-**Propaganda effect** g(e<sub>j</sub>, ᾱ(s<sub>j</sub>)):
-- e<sub>j</sub>: Candidate j's propaganda/campaign effort
-- ᾱ(s<sub>j</sub>): Population share already activated to narrative s
+**Properties**:
+1. **S-curve**: g_e > 0; g_{ee} < 0 (small e), g_{ee} > 0 (intermediate e), g_{ee} < 0 (large e)
+2. **Network effects**: g_ᾱ > 0
+3. **Bounded**: α_i(s) ∈ [0,1], g ≤ 1 - α_{i,0}(s)
+4. **Cross-effects**: e_j increases α_i(s_j), e_k decreases it
 
-**Properties of g:**
+### 2.4 Choice
 
-1. **S-curve dynamics** (increasing returns past threshold):
-   - g<sub>e</sub> > 0, g<sub>ee</sub> < 0 for small e
-   - g<sub>ee</sub> > 0 for intermediate e (accelerating zone)
-   - g<sub>ee</sub> < 0 for large e (saturation)
-   
-   Interpretation:
-   - Initially slow: Hard to activate first voters
-   - Accelerating zone: Social reinforcement, bandwagon effects
-   - Saturation: Bounded by 1 - α<sub>i,0</sub>(s<sub>j</sub>)
+Voter i chooses s_i* = arg max_{s ∈ {s₁, s₂}} U_i(s).
 
-2. **Network effects**: g<sub>ᾱ</sub> > 0
-   - Easier to activate voter i when many others already activated
-   - "Everyone believes it" → social proof makes narrative compelling
+**Counter-preferential voting**: Choosing s* despite E[u_i|s*] < E[u_i|s_other].
 
-3. **Boundedness**: 
-   - α<sub>i</sub>(s<sub>j</sub>) ≤ 1
-   - g(e<sub>j</sub>, ᾱ) ≤ 1 - α<sub>i,0</sub>(s<sub>j</sub>)
-   - Propaganda can only activate existing predispositions
-   - Cannot create preferences from nothing
+**Symmetric case** (for tractability): Assume α_i(s₁) = α_i(s₂) = α_i. Then voter chooses s₁ over s₂ when:
 
-### 2.4 Voter Choice
+V(s₁) - V(s₂) ≥ [(1 - α_i) / α_i] · [E[u_i|s₂] - E[u_i|s₁]]
 
-Voter i votes for candidate 1 over candidate 2 if:
+**Trade-off rate**: For α_i = 0.8, voter accepts $4 material loss for $1 symbolic gain.
 
-α<sub>i</sub>(s<sub>1</sub>) V(s<sub>1</sub>) + [1-α<sub>i</sub>(s<sub>1</sub>)]E[u<sub>i</sub>|P<sub>1</sub>] ≥ α<sub>i</sub>(s<sub>2</sub>) V(s<sub>2</sub>) + [1-α<sub>i</sub>(s<sub>2</sub>)]E[u<sub>i</sub>|P<sub>2</sub>]
+### 2.5 Non-Reducibility
 
-**Counter-preferential voting** occurs when a voter chooses candidate j despite:
+**Proposition 0** (Non-Reducibility): No utility function Ũ_i(E[u_i|s]) depending only on material consequences satisfies arg max_s U_i(s) = arg max_s Ũ_i(E[u_i|s]) for all (V(s), α_i(s)).
 
-E[u<sub>i</sub>|P<sub>j</sub>] < E[u<sub>i</sub>|P<sub>k</sub>]
+**Proof**: Suppose s_A, s_B with E[u_i|s_A] = E[u_i|s_B] = ū but V(s_A) ≠ V(s_B) and α_i(s_A) > 0. Then U_i(s_A) = α_i(s_A)·V(s_A) + [1-α_i(s_A)]·ū and U_i(s_B) = α_i(s_B)·V(s_B) + [1-α_i(s_B)]·ū. If V(s_A) > V(s_B) and α_i(s_A) high, then U_i(s_A) > U_i(s_B). But Ũ_i(ū) = Ũ_i(ū) implies indifference. Contradiction. 
 
-This happens when:
+Alternatively: Counter-preferential voting (choosing s₁ with E[u_i|s₁] < E[u_i|s₂]) requires U_i(s₁) > U_i(s₂) but any monotone Ũ_i(E[u_i|s]) satisfies Ũ_i(E[u_i|s₁]) < Ũ_i(E[u_i|s₂]), predicting s₂. If Ũ_i non-monotone, violates rationality. ∎
 
-α<sub>i</sub>(s<sub>j</sub>)[V(s<sub>j</sub>) - V(s<sub>k</sub>)] ≥ [1-α<sub>i</sub>(s<sub>j</sub>)][E[u<sub>i</sub>|P<sub>k</sub>] - E[u<sub>i</sub>|P<sub>j</sub>]]
+**Interpretation**: V(s) as public good independent of material consequences cannot be captured by outcome-based utility. This formalizes Sen's commitment concept. Thus, any attempt to reinterpret V(s) as a function of personal outcomes collapses the model’s ability to generate counter-preferential choice.
 
-Rearranging:
+### 2.6 Candidates
 
-V(s<sub>j</sub>) - V(s<sub>k</sub>) ≥ [1-α<sub>i</sub>(s<sub>j</sub>)] / α<sub>i</sub>(s<sub>j</sub>) · [E[u<sub>i</sub>|P<sub>k</sub>] - E[u<sub>i</sub>|P<sub>j</sub>]]
+Candidate j chooses (s_j ∈ S_j, e_j ≥ 0) to maximize:
 
-**Interpretation**: The narrative advantage must exceed the material cost, weighted by the relative importance of material vs symbolic considerations.
+Pr(s_j chosen) · [u_j(s_j) - u_j(s_k)] - c(e_j)
 
-**Trade-off rate**: For voter with α<sub>i</sub>(s<sub>j</sub>) = 0.8:
+where Pr(s_j chosen) = ∫ 𝟙[U_i(s_j) ≥ U_i(s_k)] dF(i).
 
-V(s<sub>j</sub>) - V(s<sub>k</sub>) ≥ 0.2/0.8 · [E[u<sub>i</sub>|P<sub>k</sub>] - E[u<sub>i</sub>|P<sub>j</sub>]] = 0.25 · [E[u<sub>i</sub>|P<sub>k</sub>] - E[u<sub>i</sub>|P<sub>j</sub>]]
+**Viability**: Narrative s viable only if ∫ 𝟙[α_{i,0}(s) ≥ α*] dF(i) sufficiently large. Example: Hindu Rashtra viable (Hindus ≈ 80%), Muslim Rashtra not (Muslims ≈ 15%).
 
-The voter needs only $1 of narrative value to accept $4 of material loss. This is the "lollipop of civilization" mechanism.
+### 2.7 Equilibrium
 
-### 2.5 Candidate Objectives
-
-Candidates are **policy-motivated** (for tractability in first pass):
-
-Candidate j:
-- **Given/committed to**: Policy bundle P<sub>j</sub> (their ideal policy)
-- **Utility if elected**: u<sub>j</sub>(P<sub>j</sub>) (benefits from implementing preferred policies)
-- **Utility if not elected**: u<sub>j</sub>(P<sub>k</sub>) where k ≠ j
-
-Candidates choose:
-- **Narrative** s<sub>j</sub> ∈ S<sub>j</sub> from credible set (cannot promise anything)
-- **Propaganda effort** e<sub>j</sub> ≥ 0 at cost c(e<sub>j</sub>)
-
-**Objective**: Maximize probability of election to implement P<sub>j</sub>, net of campaign costs
-
-**Note**: We assume candidates are "sinister" in that they don't personally value the narrative s—they use it instrumentally to win. This is deliberately stark for the first pass. Extensions could allow candidates who genuinely value certain narratives.
-
-### 2.6 Equilibrium Concept
-
-**Nash Equilibrium in narratives and propaganda**:
-
-Given committed policies (P<sub>1</sub>, P<sub>2</sub>), each candidate chooses (s<sub>j</sub>, e<sub>j</sub>) to maximize their probability of winning, taking the opponent's choice as given.
-
-Voters best-respond by voting for the candidate offering higher utility.
+Nash equilibrium: Given (s₁, s₂), each j chooses e_j* maximizing probability of winning given e_k. Voters best-respond choosing arg max_s U_i(s).
 
 ---
 
 ## 3. Analysis
 
-### 3.1 When Does Counter-Preferential Voting Occur?
+### 3.1 Existence of Counter-Preferential Voting
 
-**Proposition 1** (Existence of Counter-Preferential Voting):
+**Proposition 1**: For voter i with α_{i,0}(s₁) > 0 and E[u_i|s₁] < E[u_i|s₂], there exists (e₁, e₂) inducing choice of s₁ if:
 
-For any voter i with α<sub>i,0</sub>(s<sub>j</sub>) > 0 and policy bundles (P<sub>1</sub>, P<sub>2</sub>) such that E[u<sub>i</sub>|P<sub>1</sub>] < E[u<sub>i</sub>|P<sub>2</sub>], there exists a propaganda level e<sub>1</sub> such that voter i chooses candidate 1 if:
+g(e₁, e₂, ᾱ(s₁)) ≥ [E[u_i|s₂] - E[u_i|s₁]] / [V(s₁) - V(s₂)] - α_{i,0}(s₁)
 
-g(e<sub>1</sub>, ᾱ(s<sub>1</sub>)) ≥ [E[u<sub>i</sub>|P<sub>2</sub>] - E[u<sub>i</sub>|P<sub>1</sub>]] / [V(s<sub>1</sub>) - V(s<sub>2</sub>)] - α<sub>i,0</sub>(s<sub>1</sub>)
+provided RHS < 1 - α_{i,0}(s₁) and V(s₁) > V(s₂).
 
-provided the right-hand side is less than 1 - α<sub>i,0</sub>(s<sub>1</sub>).
+**Proof**: Symmetric voting condition requires α_i ≥ [E[u_i|s₂] - E[u_i|s₁]] / [V(s₁) - V(s₂) + E[u_i|s₂] - E[u_i|s₁]]. Since α_i = α_{i,0}(s₁) + g, propaganda must satisfy inequality. Feasibility requires RHS < 1 - α_{i,0}(s₁). ∎
 
-**Proof sketch**: Direct from the voting condition. Propaganda shifts α upward until the narrative advantage dominates the material loss. The bound ensures this is feasible given the predisposition ceiling.
+**Corollary**: Counter-preferential voting more likely with high α_{i,0}, moderate material loss, large V differential, effective propaganda.
 
-**Corollary 1**: Counter-preferential voting is more likely when:
-1. Baseline predisposition α<sub>i,0</sub>(s<sub>j</sub>) is high (sociological substrate)
-2. Material loss E[u<sub>i</sub>|P<sub>2</sub>] - E[u<sub>i</sub>|P<sub>1</sub>] is moderate (not catastrophic)
-3. Narrative differential V(s<sub>1</sub>) - V(s<sub>2</sub>) is large (stark symbolic choice)
-4. Propaganda is effective (low cost, strong network effects)
+### 3.2 Tipping Points
 
-### 3.2 The Role of Thresholds and Tipping Points
+**Proposition 2**: If g exhibits S-curve (g_{ee} > 0 intermediate) and network effects (g_ᾱ > 0), then: (1) multiple equilibria (low-activation vs high-activation), (2) threshold effects (crossing e* triggers cascade), (3) polarization (stable high-α and low-α clusters).
 
-The S-curve propaganda function creates **non-monotone** dynamics:
+**Proof sketch**: S-curve creates positive feedback. Define ᾱ = ∫ 𝟙[α_i ≥ α̂] dF(i). Then dᾱ/de₁ = ∫ g_e·δ(α_i - α̂) dF(i). When ᾱ low, g_ᾱ > 0 implies low g_e. As ᾱ rises, enter g_{ee} > 0 zone where dᾱ/de₁ accelerates. Creates multiple fixed points. ∎
 
-**Proposition 2** (Tipping Points):
+### 3.3 Decay and Maintenance
 
-If g<sub>ee</sub> > 0 in intermediate range and g<sub>ᾱ</sub> > 0 (network effects), then:
+**Two periods**: t=1 (election), t=2 (governance). Decay: α_i(s, t=2) = α_i(s, t=1) - δ[1 - m] where δ = decay rate, m = maintenance.
 
-1. **Multiple equilibria** possible: Low-activation equilibrium (few voters activated, propaganda ineffective) vs high-activation equilibrium (many activated, self-reinforcing)
+**Proposition 3**: If u_i(s*) < E[u_i|s*] and m < m̄, then α_i(s*, t=2) < α_i(s*, t=1), creating potential regret. High m sustains α despite poor outcomes, preventing accountability.
 
-2. **Threshold effects**: Small increases in e<sub>j</sub> below threshold have minimal effect, but pushing past threshold triggers cascade
-
-3. **Polarization**: Societies can split into stable high-α and low-α clusters that are difficult to shift
-
-**Intuition**: Once enough voters are activated to a narrative, social reinforcement makes it easier to activate more. This creates bandwagon dynamics and potential for rapid shifts in political landscape.
-
-### 3.3 Temporal Dynamics: Decay and Disillusionment
-
-Extend to two periods: t=1 (election), t=2 (governance)
-
-**At t=2**, activated α decays:
-
-α<sub>i</sub>(s<sub>j</sub>, t=2) = α<sub>i</sub>(s<sub>j</sub>, t=1) - δ · [1 - m<sub>j</sub>]
-
-Where:
-- δ: Natural decay rate of narrative salience
-- m<sub>j</sub>: Maintenance effort (rallies, media, symbolic gestures)
-
-**Simultaneously**, voters observe actual outcomes and update beliefs about E[u|P].
-
-**Proposition 3** (Voter Regret):
-
-If actual outcomes fall short of promises and maintenance is low:
-
-u<sub>i</sub>(P<sub>j</sub>) < E[u<sub>i</sub>|P<sub>j</sub>] and m<sub>j</sub> is low
-
-Then (1-α) weight increases in relative terms, creating "buyer's remorse."
-
-**However**: If m<sub>j</sub> is high (constant propaganda), α can be sustained despite poor outcomes, preventing accountability.
-
-**Empirical prediction**: Populist leaders invest heavily in symbolic politics and rallies (maintenance) even when policy performance is poor, to prevent α decay.
+**Proof**: α decays; re-evaluation U_i(s*, t=2) = α(t=2)·V + [1-α(t=2)]·u_i < U_i(s*, t=1) since α↓ and u_i < expected. High m prevents this. ∎
 
 ### 3.4 Comparative Statics
 
-**Effect of increasing baseline predisposition α<sub>i,0</sub>**:
-- More counter-preferential voting (direct effect)
-- Lower propaganda requirement to activate voters
-- More stable high-α equilibria
+↑ α_{i,0}: ↑ counter-preferential voting, ↓ propaganda requirement, ↑ stability
 
-**Effect of increasing material losses E[u|P<sub>2</sub>] - E[u|P<sub>1</sub>]**:
-- Requires higher propaganda effort to overcome
-- But if losses are catastrophic, even high α insufficient
-- Prediction: Populism succeeds with moderate harm, fails with extreme harm
+↑ material loss: ↑ propaganda requirement, eventual breakdown if catastrophic
 
-**Effect of narrative strength V(s<sub>1</sub>) - V(s<sub>2</sub>)**:
-- Stronger narrative differences enable more counter-preferential voting
-- Candidates have incentive to polarize narratives
-- "Culture war" rhetoric is strategic: maximizes V(s<sub>1</sub>) - V(s<sub>2</sub>)
+↑ V differential: ↑ counter-preferential voting, candidates polarize strategically
+
+↑ ∂g/∂e: ↑ counter-preferential voting, ↑ tipping point likelihood
+
+↑ ∂g/∂ᾱ: ↑ cascades, ↑ polarization, ↑ multiple equilibria
 
 ---
 
-## 4. Application: Hindu Nationalism and Economic Voting in India
+## 4. Application
 
-### 4.1 The Context
+**India**: s_Hindu (Hindu Rashtra) vs s_secular (secular pluralism). Median Hindu voter: E[u_i|s_secular] - E[u_i|s_Hindu] = ₹20,000/year but chooses s_Hindu with α ≈ 0.8.
 
-Consider BJP's Hindu nationalist narrative (s<sub>Hindu</sub>) vs secular Congress alternative (s<sub>secular</sub>):
+**Implied**: V(s_Hindu) - V(s_secular) ≥ (0.2/0.8) × 20,000 = ₹5,000 ≈ $60-70/year ≈ 1% income. Plausible for identity goods (comparable to religious spending).
 
-- **Narrative differential**: Hindu Rashtra (civilizational revival) vs secular pluralism
-- **Policy differential**: BJP's actual economic policies have mixed/negative effects for many voters (demonetization, farmer protests, unemployment)
-- **Observed behavior**: Hindu voters support BJP despite economic harm
+**Mechanism**: Baseline α_{i,0} ≈ 0.4-0.5 (Partition, Kashmir, history) → propaganda shifts to α ≈ 0.8 → high maintenance m ≈ 0.7-0.8 prevents decay despite economic crises.
 
-### 4.2 Calibration Exercise
-
-Suppose:
-- Hindu voter experiences income loss: E[u<sub>i</sub>|P<sub>BJP</sub>] - E[u<sub>i</sub>|P<sub>Cong</sub>] = -₹20,000/year
-- Observed α ≈ 0.8 (inferred from voting patterns)
-- Voter still chooses BJP
-
-This implies:
-
-V(s<sub>Hindu</sub>) - V(s<sub>secular</sub>) ≥ 0.2/0.8 × 20,000 = ₹5,000
-
-The symbolic value of Hindu Rashtra must be at least ₹5,000 to rationalize the choice.
-
-**Is this plausible?**
-- Voters describe "pride," "respect for culture," "protection from threats"
-- These have real subjective value, not reducible to material consumption
-- Survey evidence: Hindu voters prioritize "cultural protection" over economic issues
-
-### 4.3 Propaganda Dynamics
-
-BJP's massive propaganda apparatus (IT cells, WhatsApp, rallies) shifts α<sub>i,0</sub> → α<sub>i</sub> through:
-
-1. **Activation of historical predisposition**: Reminding of Mughal rule, partition, Kashmir
-2. **Network effects**: "Everyone in my community supports Modi" → social proof
-3. **Threshold crossing**: Once enough activated, becomes self-reinforcing
-4. **Maintenance**: Constant rallies and media prevent α decay despite policy failures
-
-This explains why economic crises (demonetization, COVID mismanagement) don't cost BJP support among Hindu base—α remains high through sustained propaganda.
-
-### 4.4 Policy Implications
-
-**For opposition parties**:
-- Cannot win on economic issues alone if α<sub>Hindu</sub> is high
-- Must either: (a) reduce α through counter-propaganda, or (b) offer competing narrative with high V(s)
-- Difficult because α<sub>i,0</sub>(s<sub>Hindu</sub>) has deep historical roots
-
-**For welfare**:
-- Voters are "rationally" choosing harm
-- Standard Pareto criteria unclear: voters maximize their full utility (including V(s)) but suffer materially
-- Suggests role for institutions that protect against counter-preferential voting (though this raises paternalism concerns)
+**Viability**: Hindu Rashtra viable (80% population), Muslim Rashtra not (15% insufficient).
 
 ---
 
-## 5. Discussion and Extensions
+## 5. Discussion
 
-### 5.1 Relation to Existing Literature
+**Identity voting** (Akerlof & Kranton 2000): Model identity-specific private utility. We model public symbolic good with heterogeneous weighting, prove non-reducibility (Proposition 0), add endogenous α dynamics.
 
-**Identity voting** (Akerlof & Kranton, Shayo): Our α captures identity salience, but with explicit narrative-dependence and propaganda dynamics
+**Expressive voting** (Brennan & Lomasky 1993): We formalize symbolic component but voters consequentialist about both V and u.
 
-**Expressive voting** (Brennan & Lomasky): We formalize the symbolic component, but voters are consequentialist about both material and symbolic outcomes
+**Asymmetric α**: General case α_i(s₁) ≠ α_i(s₂) matters for targeting (high V(s) insufficient if low α_i(s)), differential responsiveness, no "symbolic types." Symmetric case for tractability.
 
-**Behavioral political economy**: We don't require bounded rationality—voters are sophisticated but have preferences beyond material consumption
-
-**Populism literature**: Provides micro-foundation for why "cultural" appeals trump economic interests
-
-### 5.2 Extensions
-
-1. **Endogenous candidate policy choice**: Let candidates choose P<sub>1</sub>, P<sub>2</sub> strategically, trading off policy preferences vs electability
-
-2. **Information asymmetries**: Voters uncertain about true E[u|P], candidates can manipulate beliefs
-
-3. **Multiple narratives**: More than two candidates, coalitions of narratives
-
-4. **Long-run dynamics**: How do α<sub>i,0</sub> evolve over generations? Intergenerational transmission of predispositions
-
-5. **Heterogeneous propaganda effectiveness**: Different voters respond differently to same propaganda effort
-
-6. **Welfare analysis**: When is counter-preferential voting "good" (genuine value) vs "bad" (manipulation)?
-
-### 5.3 Empirical Predictions
-
-1. **Narrative-specific α**: Same voters respond differently to different symbolic appeals based on identity
-2. **S-curve activation**: Propaganda has threshold effects and increasing returns
-3. **Maintenance requirements**: Leaders must sustain propaganda to prevent α decay
-4. **Economic resilience**: Populist support persists through economic downturns if narrative maintenance is high
-5. **Polarization cascades**: Societies can rapidly shift to high-α equilibria once threshold crossed
+**Limitations**: Take V(s), E[u|s], α_{i,0}(s), F(α_{i,0}) as given. Explain α-dynamics (activation, cascades, persistence), not origins of symbolic value.
 
 ---
 
 ## 6. Conclusion
 
-We formalize Sen's insight about commitment for political choice: voters have preferences over world-states independent of material outcomes. This creates a micro-foundation for counter-preferential voting—choosing policies that harm material interests to realize symbolic/narrative visions.
+We formalize Sen's commitment as preferences over public world-states V(s) independent of material outcomes. Proposition 0 proves non-reducibility to outcome-based utility—key distinction from standard models.
 
-The key mechanism is the trade-off rate: high α voters need little narrative benefit to accept large material losses. When combined with S-curve propaganda dynamics (increasing returns, network effects), this explains persistent support for harmful populist policies.
+**Contributions**: V(s) as public good, non-reducibility proof, endogenous α via propaganda with S-curve and network effects, s-only choice (no bundle creep), dynamics (tipping points, polarization, maintenance requirement).
 
-The model suggests counter-preferential voting is:
-- **Rational**: Voters maximize well-defined preferences
-- **Sophisticated**: They understand policy consequences
-- **Consequential**: They experience real material harm
-- Yet **stable**: Propaganda maintenance can sustain high α despite poor outcomes
-
-This framework helps explain Brexit, Trump, Modi, and other cases where voters "vote against their interests"—they're not irrational, they're maximizing over a richer preference space that includes the symbolic value of political visions.
+Counter-preferential voting is rational (maximizing U_i), sophisticated (understanding E[u|s]), consequential (real harm), yet stable (high m sustains α). Explains Brexit, Trump, Modi—not irrationality, but richer preferences including public symbolic goods. The α-dynamics distinguish this from identity models and microfound populist phenomena.
 
 ---
 
@@ -369,8 +191,12 @@ This framework helps explain Brexit, Trump, Modi, and other cases where voters "
 
 Sen, A. (1977). "Rational Fools: A Critique of the Behavioral Foundations of Economic Theory." *Philosophy & Public Affairs*, 6(4), 317-344.
 
-*Additional references to be added for identity voting, populism, behavioral political economy literature*
+Akerlof, G. A., & Kranton, R. E. (2000). "Economics and Identity." *Quarterly Journal of Economics*, 115(3), 715-753.
+
+Brennan, G., & Lomasky, L. (1993). *Democracy and Decision: The Pure Theory of Electoral Preference*. Cambridge University Press.
+
+Shayo, M. (2009). "A Model of Social Identity with an Application to Political Economy." *American Political Science Review*, 103(2), 147-174.
 
 ---
 
-**Comments welcome. This is early-stage work.**
+**Comments welcome. This is early-stage theoretical work.**
